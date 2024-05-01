@@ -583,6 +583,12 @@ require('lazy').setup({
             },
           },
         },
+
+        tsserver = {},
+
+        tailwindcss = {},
+
+        svelte = {},
       }
 
       -- Ensure the servers and tools above are installed
@@ -856,6 +862,14 @@ require('lazy').setup({
       'nvim-telescope/telescope.nvim',
     },
     config = true,
+    keys = {
+      { '<leader>gg', ':Neogit<cr>', desc = 'Neo[G]it' },
+    },
+  },
+  {
+    'pmizio/typescript-tools.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
+    opts = {},
   },
   -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
@@ -867,11 +881,13 @@ require('lazy').setup({
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
   -- require 'kickstart.plugins.debug',
-  -- require 'kickstart.plugins.indent_line',
+  require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
-  -- require 'kickstart.plugins.autopairs',
-  -- require 'kickstart.plugins.neo-tree',
+  require 'kickstart.plugins.autopairs',
+  require 'kickstart.plugins.neo-tree',
   require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
+  require 'kickstart.plugins.git_worktree',
+  require 'kickstart.plugins.fidget',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
