@@ -5,20 +5,47 @@ return {
     event = { 'BufReadPre', 'BufNewFile' },
     config = function()
       local lint = require 'lint'
+
+      lint.linters.oxlint = {
+        name = 'oxlint',
+        cmd = 'oxlint',
+        args = {
+          '--format',
+          'unix',
+          '--jsx-a11y-plugin',
+          '--react-perf-plugin',
+        },
+        stream = 'stdout',
+        parser = require('lint.parser').from_pattern('.+:(%d+):(%d+): (.+)%[(%w+)/.+', { 'lnum', 'col', 'message', 'severity' }, {
+          ['Warning'] = vim.diagnostic.severity.WARN,
+          ['Error'] = vim.diagnostic.severity.ERROR,
+          ['Info'] = vim.diagnostic.severity.INFO,
+          ['Hint'] = vim.diagnostic.severity.HINT,
+        }, {
+          source = 'oxlint',
+        }),
+      }
+
       lint.linters_by_ft = {
         markdown = { 'markdownlint' },
         javascript = {
+          -- 'oxlint',
           'eslint_d',
         },
         typescript = {
           'eslint_d',
+          -- 'oxlint',
         },
         javascriptreact = {
           'eslint_d',
+          -- 'oxlint',
         },
         typescriptreact = {
           'eslint_d',
+          -- 'oxlint',
         },
+        json = { 'jsonlint' },
+        sql = { 'sqlfluff' },
       }
 
       -- To allow other plugins to add linters to require('lint').linters_by_ft,
