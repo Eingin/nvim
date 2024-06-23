@@ -27,7 +27,7 @@ return {
       }
 
       lint.linters_by_ft = {
-        markdown = { 'markdownlint' },
+        -- markdown = { 'markdownlint' },
         javascript = {
           -- 'oxlint',
           'eslint_d',
