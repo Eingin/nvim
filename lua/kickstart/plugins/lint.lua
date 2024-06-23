@@ -30,18 +30,18 @@ return {
         -- markdown = { 'markdownlint' },
         javascript = {
           -- 'oxlint',
-          'eslint_d',
+          'eslint',
         },
         typescript = {
-          'eslint_d',
+          'eslint',
           -- 'oxlint',
         },
         javascriptreact = {
-          'eslint_d',
+          'eslint',
           -- 'oxlint',
         },
         typescriptreact = {
-          'eslint_d',
+          'eslint',
           -- 'oxlint',
         },
         json = { 'jsonlint' },

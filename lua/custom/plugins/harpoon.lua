@@ -11,6 +11,10 @@ return {
       harpoon:list():add()
     end, { desc = '[A]dd harpoon' })
 
+    vim.keymap.set('n', '<leader>dh', function()
+      harpoon:list():remove()
+    end, { desc = '[D]elete [H]arpoon' })
+
     vim.keymap.set('n', '<C-e>', function()
       harpoon.ui:toggle_quick_menu(harpoon:list())
     end)
