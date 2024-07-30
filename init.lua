@@ -554,10 +554,10 @@ require('lazy').setup({
       formatters_by_ft = {
         lua = { 'stylua' },
         javascript = { { 'prettierd' } },
+        javascriptreact = { { 'prettierd' } },
         typescript = { { 'prettierd' } },
         typescriptreact = { { 'prettierd' } },
         json = { { 'jq' } },
-        sql = { { 'sqlfluff' } },
       },
     },
   },
@@ -777,6 +777,7 @@ require('lazy').setup({
     opts = {
       inlay = true,
       settings = {
+        expose_as_code_action = 'all',
         tsserver_file_preferences = {
           includeInlayParameterNameHints = 'all',
           includeCompletionsForModuleExports = true,
