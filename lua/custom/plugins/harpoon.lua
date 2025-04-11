@@ -1,3 +1,13 @@
+local function git_branch()
+  local pipe = io.popen 'git branch --show-current'
+  if pipe then
+    local c = pipe:read('*l'):match '^%s*(.-)%s*$'
+    pipe:close()
+    return c
+  end
+  return 'default list'
+end
+
 return {
   'ThePrimeagen/harpoon',
   lazy = false,
@@ -8,42 +18,42 @@ return {
     harpoon:setup()
 
     vim.keymap.set('n', '<leader>a', function()
-      harpoon:list():add()
+      harpoon:list(git_branch()):add()
     end, { desc = '[A]dd harpoon' })
 
     vim.keymap.set('n', '<leader>dh', function()
-      harpoon:list():remove()
+      harpoon:list(git_branch()):remove()
     end, { desc = '[D]elete [H]arpoon' })
 
-    vim.keymap.set('n', '<C-e>', function()
-      harpoon.ui:toggle_quick_menu(harpoon:list())
-    end)
+    -- vim.keymap.set('n', '<C-e>', function()
+    --   harpoon.ui:toggle_quick_menu(harpoon:list(git_branch()))
+    -- end)
 
     vim.keymap.set('n', '<leader>1', function()
-      harpoon:list():select(1)
+      harpoon:list(git_branch()):select(1)
     end, { desc = '[1]st harpoon' })
 
     vim.keymap.set('n', '<leader>2', function()
-      harpoon:list():select(2)
+      harpoon:list(git_branch()):select(2)
     end, { desc = '[2]nd harpoon' })
 
     vim.keymap.set('n', '<leader>3', function()
-      harpoon:list():select(3)
+      harpoon:list(git_branch()):select(3)
     end, { desc = '[3]rd harpoon' })
 
     vim.keymap.set('n', '<leader>4', function()
-      harpoon:list():select(4)
+      harpoon:list(git_branch()):select(4)
     end, { desc = '[4]th harpoon' })
 
     vim.keymap.set('n', '<leader>5', function()
-      harpoon:list():select(5)
+      harpoon:list(git_branch()):select(5)
     end, { desc = '[5]th harpoon' })
 
     vim.keymap.set('n', '<C-S-P>', function()
-      harpoon:list():prev()
+      harpoon:list(git_branch()):prev()
     end)
     vim.keymap.set('n', '<C-S-N>', function()
-      harpoon:list():next()
+      harpoon:list(git_branch()):next()
     end)
 
     -- basic telescope configuration
@@ -67,7 +77,7 @@ return {
     end
 
     vim.keymap.set('n', '<C-e>', function()
-      toggle_telescope(harpoon:list())
+      toggle_telescope(harpoon:list(git_branch()))
     end, { desc = 'Open harpoon window' })
   end,
 }

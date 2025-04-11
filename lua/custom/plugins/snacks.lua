@@ -3,6 +3,20 @@ return {
   priority = 1000,
   lazy = false,
   keys = {
+    {
+      '<leader><space>',
+      function()
+        Snacks.picker.buffers()
+      end,
+      desc = 'Smart Find Files',
+    },
+    {
+      '<leader>/',
+      function()
+        Snacks.picker.grep()
+      end,
+      desc = 'Grep',
+    },
     { '<leader>sn', '<cmd>lua require("snacks").open()<cr>', desc = '[S]nacks' },
     {
       '<leader>gB',
@@ -39,11 +53,43 @@ return {
       end,
       desc = '[T]erminal',
     },
+    {
+      '<leader>sf',
+      function()
+        Snacks.picker.git_files()
+      end,
+      desc = '[T]erminal',
+    },
+    {
+      '<leader>sw',
+      function()
+        Snacks.picker.grep_word()
+      end,
+      desc = '[T]erminal',
+    },
+    {
+      '<leader>sg',
+      function()
+        Snacks.picker.grep()
+      end,
+      desc = '[T]erminal',
+    },
   },
   opts = {
     bigfile = { enabled = true },
-    lazygit = { enabled = true },
+    lazygit = {
+      enabled = true,
+      config = {
+        gui = {
+          spinner = {
+            frames = { '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' },
+            rate = 100,
+          },
+        },
+      },
+    },
     dashboard = { enabled = true },
+    image = { enabled = true },
     indent = { enabled = true },
     input = { enabled = true },
     notifier = { enabled = true },
